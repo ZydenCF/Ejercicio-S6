@@ -21,5 +21,6 @@ public class VidaJugador : MonoBehaviour
             }
             Destroy(gameObject);
         }
+
     }
 }
