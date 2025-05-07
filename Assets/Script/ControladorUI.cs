@@ -32,4 +32,5 @@ public class ControladorUI : MonoBehaviour
             textoVida.text = "Vida: " + vidaJugador.vida;
         }
     }
+
 }
