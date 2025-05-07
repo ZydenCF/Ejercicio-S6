@@ -37,6 +37,7 @@ public class Jugador : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
         Vector3 direccion = new Vector3(horizontal, 0, vertical);
         transform.Translate(direccion * velocidad * Time.deltaTime, Space.World);
+
     }
 
     void RotarHaciaMouse()
