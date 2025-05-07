@@ -33,5 +33,6 @@ public class EnemigoLento : EnemigoBase
                 Destroy(gameObject);
             }
         }
+
     }
 }
