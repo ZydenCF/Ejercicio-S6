@@ -27,6 +27,7 @@ public class EnemigoEscudero : EnemigoBase
         if (velocidad <= 0)
         {
             velocidad = velocidadMovimiento;
+
         }
     }
 
