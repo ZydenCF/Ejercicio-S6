@@ -41,5 +41,6 @@ public class EnemigoZigZag : EnemigoBase
                 Destroy(gameObject);
             }
         }
+
     }
 }
