@@ -52,6 +52,7 @@ public abstract class EnemigoBase : MonoBehaviour, IObserver
         if (GameManager.instancia != null)
         {
             GameManager.instancia.Quitar(this);
+
         }
     }
 
