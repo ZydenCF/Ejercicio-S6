@@ -58,4 +58,5 @@ public class Spawner : MonoBehaviour, IObserver
             GameManager.instancia.Quitar(this);
         }
     }
+
 }
