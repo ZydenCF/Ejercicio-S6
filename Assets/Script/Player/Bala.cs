@@ -31,5 +31,6 @@ public class Bala : MonoBehaviour
 
             Destroy(gameObject);
         }
+
     }
 }
