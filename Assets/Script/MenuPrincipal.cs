@@ -12,6 +12,7 @@ public class MenuPrincipal : MonoBehaviour
         botonJugar.onClick.AddListener(() => 
         {
             SceneManager.LoadScene("SampleScene");
+
         });
 
     }
