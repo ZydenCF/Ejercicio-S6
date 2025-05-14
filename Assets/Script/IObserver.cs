@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public interface IObserver 
+public interface IObserver
 {
     void Ejecutar(ISubject sujeto);
-
 }

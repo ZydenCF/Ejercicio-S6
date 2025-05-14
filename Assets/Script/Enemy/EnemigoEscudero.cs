@@ -1,33 +1,28 @@
 using UnityEngine;
+
 public class EnemigoEscudero : EnemigoBase
 {
     public int vidaMaxima = 2;
     private int vidaActual;
-    public float velocidadMovimiento = 12f;  
+    public float velocidadMovimiento = 12f;
 
     void Start()
     {
-       
         vidaActual = vidaMaxima;
-
         ActualizarColorPorVida();
-
         velocidad = velocidadMovimiento;
     }
 
     protected override void Iniciar()
     {
-       
         if (vidaActual <= 0)
         {
             vidaActual = vidaMaxima;
             ActualizarColorPorVida();
         }
-
         if (velocidad <= 0)
         {
             velocidad = velocidadMovimiento;
-
         }
     }
 
@@ -36,14 +31,10 @@ public class EnemigoEscudero : EnemigoBase
         if (jugador != null)
         {
             Vector3 direccion = jugador.position - transform.position;
-            direccion.y = 0;  
-
+            direccion.y = 0;
             if (direccion != Vector3.zero)
             {
-                
                 transform.rotation = Quaternion.LookRotation(direccion);
-
-                
                 transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
             }
         }
@@ -53,9 +44,10 @@ public class EnemigoEscudero : EnemigoBase
             if (jugadorObj != null)
             {
                 jugador = jugadorObj.transform;
-            }   
+            }
         }
     }
+
     void OnCollisionEnter(Collision colision)
     {
         if (colision.gameObject.CompareTag("Player"))
@@ -76,11 +68,11 @@ public class EnemigoEscudero : EnemigoBase
             RecibirDaño();
         }
     }
+
     public void RecibirDaño()
     {
         vidaActual--;
         ActualizarColorPorVida();
-
         if (vidaActual <= 0)
         {
             Destroy(gameObject);
@@ -95,7 +87,7 @@ public class EnemigoEscudero : EnemigoBase
             {
                 GetComponent<Renderer>().material.color = Color.blue;
             }
-            else if (vidaActual == 2)
+            else if (vidaActual == 1)
             {
                 GetComponent<Renderer>().material.color = Color.magenta;
             }

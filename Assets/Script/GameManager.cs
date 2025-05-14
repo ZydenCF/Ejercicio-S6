@@ -2,18 +2,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections.Generic;
+using System;
 
 public class GameManager : MonoBehaviour, ISubject
 {
     public static GameManager instancia;
     public float tiempo;
-    public GameObject panelGameOver;
-    public TextMeshProUGUI textoFinal;
     private List<IObserver> observadores = new List<IObserver>();
     private bool juegoTerminado = false;
 
-    private GameObject panelGameOverOriginal;
-    private TextMeshProUGUI textoFinalOriginal;
+    public int nivel = 1;
+    public int enemigosEliminados = 0;
+
+    public static Action<int> OnNivelCambiado;
+    public static Action<int> OnEnemigoEliminado;
 
     void Awake()
     {
@@ -30,17 +32,11 @@ public class GameManager : MonoBehaviour, ISubject
 
     void Start()
     {
-        panelGameOverOriginal = panelGameOver;
-        textoFinalOriginal = textoFinal;
-
         tiempo = 0;
         juegoTerminado = false;
+        nivel = 1;
+        enemigosEliminados = 0;
         Time.timeScale = 1;
-
-        if (panelGameOver != null)
-        {
-            panelGameOver.SetActive(false);
-        }
     }
 
     void Update()
@@ -79,44 +75,23 @@ public class GameManager : MonoBehaviour, ISubject
     public void TerminarJuego()
     {
         juegoTerminado = true;
-        Time.timeScale = 0;
+        PlayerPrefs.SetInt("TiempoSobrevivido", (int)tiempo);
+        PlayerPrefs.SetInt("EnemigosEliminados", enemigosEliminados);
+        PlayerPrefs.SetInt("NivelAlcanzado", nivel);
+        PlayerPrefs.Save();
 
-        if (panelGameOver != null)
-        {
-            panelGameOver.SetActive(true);
-            if (textoFinal != null)
-            {
-                textoFinal.text = "Sobreviviste " + (int)tiempo + " segundos";
-            }
-        }
-        else
-        {
-            Debug.Log("Panel GameOver no asignado");
-        }
+        SceneManager.LoadScene("PantallaDerrota");
     }
 
-    private void BuscarReferencias()
+    public void EnemigoDerrotado()
     {
-        if (panelGameOverOriginal != null)
-        {
-            string nombrePanel = panelGameOverOriginal.name;
-            GameObject nuevoPanel = GameObject.Find(nombrePanel);
-            if (nuevoPanel != null)
-            {
-                panelGameOver = nuevoPanel;
-                panelGameOver.SetActive(false);
-            }
-        }
+        enemigosEliminados++;
+        OnEnemigoEliminado?.Invoke(enemigosEliminados);
 
-        if (textoFinalOriginal != null && panelGameOver != null)
+        if (enemigosEliminados % 10 == 0)
         {
-            string nombreTexto = textoFinalOriginal.gameObject.name;
-            Transform texto = panelGameOver.transform.Find(nombreTexto);
-            if (texto != null)
-            {
-                textoFinal = texto.GetComponent<TextMeshProUGUI>();
-            }
+            nivel++;
+            OnNivelCambiado?.Invoke(nivel);
         }
     }
-
 }

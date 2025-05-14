@@ -1,24 +1,21 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class ControladorUI : MonoBehaviour
 {
     public TextMeshProUGUI textoTiempo;
     public TextMeshProUGUI textoVida;
-    private VidaJugador vidaJugador;
+    public TextMeshProUGUI textoEnemigos;
+    public TextMeshProUGUI textoNivel;
 
     void Start()
     {
-        GameObject jugadorObj = GameObject.FindWithTag("Player");
-        if (jugadorObj != null)
-        {
-            vidaJugador = jugadorObj.GetComponent<VidaJugador>();
-        }
-        else
-        {
-            Debug.LogError("No se encontró el jugador con tag 'Player'");
-        }
+        // Suscribirse a los eventos
+        VidaJugador.OnVidaCambiada += ActualizarTextoVida;
+        GameManager.OnEnemigoEliminado += ActualizarTextoEnemigos;
+        GameManager.OnNivelCambiado += ActualizarTextoNivel;
     }
 
     void Update()
@@ -27,10 +24,37 @@ public class ControladorUI : MonoBehaviour
         {
             textoTiempo.text = "Tiempo: " + (int)GameManager.instancia.tiempo;
         }
-        if (vidaJugador != null && textoVida != null)
+    }
+
+    private void ActualizarTextoVida(int vidaActual, int vidaMaxima)
+    {
+        if (textoVida != null)
         {
-            textoVida.text = "Vida: " + vidaJugador.vida;
+            textoVida.text = "Vida: " + vidaActual + "/" + vidaMaxima;
         }
     }
 
+    private void ActualizarTextoEnemigos(int cantidad)
+    {
+        if (textoEnemigos != null)
+        {
+            textoEnemigos.text = "Enemigos: " + cantidad;
+        }
+    }
+
+    private void ActualizarTextoNivel(int nivel)
+    {
+        if (textoNivel != null)
+        {
+            textoNivel.text = "Nivel: " + nivel;
+        }
+    }
+
+    void OnDestroy()
+    {
+        
+        VidaJugador.OnVidaCambiada -= ActualizarTextoVida;
+        GameManager.OnEnemigoEliminado -= ActualizarTextoEnemigos;
+        GameManager.OnNivelCambiado -= ActualizarTextoNivel;
+    }
 }

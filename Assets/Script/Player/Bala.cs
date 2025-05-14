@@ -1,13 +1,18 @@
 using UnityEngine;
+using System;
+
 public class Bala : MonoBehaviour
 {
     public float velocidad;
     public float tiempoDestruccion;
 
+    public static Action<GameObject> OnImpacto;
+
     void Start()
     {
         Destroy(gameObject, tiempoDestruccion);
-        Physics.IgnoreCollision(GetComponent<Collider>(), GameObject.FindWithTag("Player").GetComponent<Collider>());
+        Physics.IgnoreCollision(GetComponent<Collider>(),
+        GameObject.FindWithTag("Player").GetComponent<Collider>());
     }
 
     void Update()
@@ -19,6 +24,8 @@ public class Bala : MonoBehaviour
     {
         if (otro.CompareTag("Enemigo"))
         {
+            OnImpacto?.Invoke(otro.gameObject);
+
             EnemigoEscudero enemigo = otro.GetComponent<EnemigoEscudero>();
             if (enemigo != null)
             {
@@ -28,9 +35,7 @@ public class Bala : MonoBehaviour
             {
                 Destroy(otro.gameObject);
             }
-
             Destroy(gameObject);
         }
-
     }
 }

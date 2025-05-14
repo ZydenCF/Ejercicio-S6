@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class EnemigoRapido : EnemigoBase
 {
@@ -9,18 +10,23 @@ public class EnemigoRapido : EnemigoBase
 
     protected override void ActualizarMovimiento()
     {
-        if (jugador != null)
+        Action moverHaciaJugador = () => 
         {
-            Vector3 direccion = jugador.position - transform.position;
-            direccion.y = 0;
-
-            if (direccion != Vector3.zero)
+            if (jugador != null)
             {
-                transform.rotation = Quaternion.LookRotation(direccion);
-                transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
+                Vector3 direccion = jugador.position - transform.position;
+                direccion.y = 0;
+                if (direccion != Vector3.zero)
+                {
+                    transform.rotation = Quaternion.LookRotation(direccion);
+                    transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
+                }
             }
-        }
+        };
+
+        moverHaciaJugador();
     }
+
     void OnCollisionEnter(Collision colision)
     {
         if (colision.gameObject.CompareTag("Player"))
@@ -32,6 +38,5 @@ public class EnemigoRapido : EnemigoBase
                 Destroy(gameObject);
             }
         }
-
     }
 }

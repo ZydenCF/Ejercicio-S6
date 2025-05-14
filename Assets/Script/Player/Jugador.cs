@@ -1,34 +1,42 @@
 using UnityEngine;
+using System;
 
 public class Jugador : MonoBehaviour
 {
     public float velocidad;
     public GameObject balaPrefab;
     public Transform puntoDisparo;
+    public float tiempoEntreDisparos = 0.5f;
+    private float tiempoUltimoDisparo = 0f;
 
-    public float tiempoEntreDisparos = 0.5f; 
-    private float tiempoUltimoDisparo = 0f;  
+    private delegate void AccionDisparo();
+    private AccionDisparo disparar;
+
+    void Start()
+    {
+        disparar = delegate () {
+            Instantiate(balaPrefab, puntoDisparo.position, puntoDisparo.rotation);
+            tiempoUltimoDisparo = Time.time;
+        };
+
+        VidaJugador.OnJugadorMuerto += () => {
+            this.enabled = false;
+        };
+    }
+
     void Update()
     {
         Mover();
         RotarHaciaMouse();
-
         if (Input.GetMouseButtonDown(0) && PuedeDisparar())
         {
-            Disparar();
+            disparar();
         }
     }
 
-    
     bool PuedeDisparar()
     {
         return Time.time >= tiempoUltimoDisparo + tiempoEntreDisparos;
-    }
-
-    void Disparar()
-    {
-        Instantiate(balaPrefab, puntoDisparo.position, puntoDisparo.rotation);
-        tiempoUltimoDisparo = Time.time; 
     }
 
     void Mover()
@@ -37,7 +45,6 @@ public class Jugador : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
         Vector3 direccion = new Vector3(horizontal, 0, vertical);
         transform.Translate(direccion * velocidad * Time.deltaTime, Space.World);
-
     }
 
     void RotarHaciaMouse()
@@ -55,5 +62,12 @@ public class Jugador : MonoBehaviour
                 transform.rotation = Quaternion.LookRotation(direccion);
             }
         }
+    }
+
+    void OnDestroy()
+    {
+        VidaJugador.OnJugadorMuerto -= () => {
+            this.enabled = false;
+        };
     }
 }
