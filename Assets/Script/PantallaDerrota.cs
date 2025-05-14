@@ -22,5 +22,6 @@ public class PantallaDerrota : MonoBehaviour
 
             actualizarTextos(GameManager.instancia);
         }
+
     }
 }
