@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5114360087185741825}
   - component: {fileID: 7535129258357148762}
   - component: {fileID: 290570096941030325}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemigoZigZag
   m_TagString: Enemigo
   m_Icon: {fileID: 0}

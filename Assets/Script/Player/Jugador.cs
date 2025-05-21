@@ -9,11 +9,13 @@ public class Jugador : MonoBehaviour
     public float tiempoEntreDisparos = 0.5f;
     private float tiempoUltimoDisparo = 0f;
 
+    private Rigidbody rb;
     private delegate void AccionDisparo();
     private AccionDisparo disparar;
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         disparar = delegate () {
             Instantiate(balaPrefab, puntoDisparo.position, puntoDisparo.rotation);
             tiempoUltimoDisparo = Time.time;
@@ -43,8 +45,9 @@ public class Jugador : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        Vector3 direccion = new Vector3(horizontal, 0, vertical);
-        transform.Translate(direccion * velocidad * Time.deltaTime, Space.World);
+        Vector3 direccion = new Vector3(horizontal, 0, vertical).normalized;
+        Vector3 nuevaPos = transform.position + direccion * velocidad * Time.deltaTime;
+        GetComponent<Rigidbody>().MovePosition(nuevaPos);
     }
 
     void RotarHaciaMouse()

@@ -10,6 +10,9 @@ public class Spawner : MonoBehaviour, IObserver
     private float tiempoActual;
     private int indiceSecuencia = 0;
     private Func<int, int> calcularFibonacci;
+    public GameObject prefabBoss;
+    private float tiempoParaBoss = 30f;
+    private float tiempoTranscurridoParaBoss = 0f;
 
     void Start()
     {
@@ -36,10 +39,18 @@ public class Spawner : MonoBehaviour, IObserver
     void Update()
     {
         tiempoActual += Time.deltaTime;
+        tiempoTranscurridoParaBoss += Time.deltaTime;
+
         if (tiempoActual >= tiempoSpawn)
         {
-            tiempoActual = 0;
+            tiempoActual = 0f;
             GenerarEnemigo();
+        }
+
+        if (tiempoTranscurridoParaBoss >= tiempoParaBoss)
+        {
+            tiempoTranscurridoParaBoss = 0f;
+            GenerarBoss();
         }
     }
 
@@ -87,4 +98,11 @@ public class Spawner : MonoBehaviour, IObserver
 
         GameManager.OnNivelCambiado -= CambiarDificultad;
     }
+
+    void GenerarBoss()
+    {
+        int punto = UnityEngine.Random.Range(0, puntosSpawn.Length);
+        Instantiate(prefabBoss, puntosSpawn[punto].position, Quaternion.identity);
+    }
+
 }
