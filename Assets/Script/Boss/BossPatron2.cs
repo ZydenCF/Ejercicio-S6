@@ -8,11 +8,11 @@ public class BossPatron2 : IBossStrategy
     {
         if (!inicializado)
         {
-            Vector3 direccionInicial = new Vector3(1f, 0f, 1f).normalized;
+            Vector3 direccionInicial = (boss.objetivo.position - boss.transform.position).normalized;
             boss.EstablecerDireccion(direccionInicial);
             inicializado = true;
         }
+
         boss.transform.position += boss.ObtenerDireccion() * boss.velocidad * Time.deltaTime;
     }
 }
-

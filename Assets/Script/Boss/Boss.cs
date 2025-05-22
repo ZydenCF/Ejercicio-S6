@@ -8,23 +8,31 @@ public class Boss : MonoBehaviour
     public float vidaMaxima = 3f;
     private float vidaActual;
     private IBossStrategy estrategiaActual;
-    private int cantidadApariciones;
+    private static int cantidadApariciones = 0;
 
     public Transform objetivo;
     public float velocidad = 10f;
     private Vector3 direccionActual;
     private Rigidbody cuerpo;
-    private bool puedeSaltar;
+
+    public GameObject proyectil;
+    public Transform puntoDisparo;
+    private float tiempoDisparo;
+    private float intervaloDisparo = 1.5f;
+
+    public int patronActual;
 
     void Start()
     {
         vidaActual = vidaMaxima;
         cuerpo = GetComponent<Rigidbody>();
+
         GameObject jugador = GameObject.FindWithTag("Player");
         if (jugador != null)
         {
             objetivo = jugador.transform;
         }
+
         CambiarEstrategia();
     }
 
@@ -39,17 +47,17 @@ public class Boss : MonoBehaviour
     public void CambiarEstrategia()
     {
         cantidadApariciones++;
-        int tipo = cantidadApariciones % 4;
+        patronActual = (cantidadApariciones - 1) % 4 + 1;
 
-        if (tipo == 0)
+        if (patronActual == 1)
         {
             estrategiaActual = new BossPatron1();
         }
-        else if (tipo == 1)
+        else if (patronActual == 2)
         {
             estrategiaActual = new BossPatron2();
         }
-        else if (tipo == 2)
+        else if (patronActual == 3)
         {
             estrategiaActual = new BossPatron3();
         }
@@ -62,12 +70,13 @@ public class Boss : MonoBehaviour
     public void RecibirDanio(float cantidad)
     {
         vidaActual -= cantidad;
+
         if (vidaActual <= 0)
         {
+            GameManager.instancia.EnemigoDerrotado();
             Destroy(gameObject);
         }
     }
-
     void OnCollisionEnter(Collision colision)
     {
         if (colision.gameObject.CompareTag("Player"))
@@ -75,30 +84,23 @@ public class Boss : MonoBehaviour
             VidaJugador vidaJugador = colision.gameObject.GetComponent<VidaJugador>();
             if (vidaJugador != null)
             {
-                vidaJugador.RecibirDaño(2);
+                vidaJugador.RecibirDaÃ±o(2);
                 Destroy(gameObject);
             }
         }
         else if (colision.gameObject.layer == LayerMask.NameToLayer("ParedInvisible"))
         {
-            direccionActual = new Vector3(UnityEngine.Random.Range(-1f, 1f), 0f, UnityEngine.Random.Range(-1f, 1f)).normalized;
-        }
-        if (estrategiaActual is BossPatron2 || estrategiaActual is BossPatron3)
-        {
-            direccionActual = Vector3.Reflect(direccionActual, colision.contacts[0].normal);
-        }
-        if (estrategiaActual is BossPatron4)
-        {
-            puedeSaltar = true;
-        }
-    }
-
-    public void Saltar()
-    {
-        if (puedeSaltar && cuerpo != null)
-        {
-            cuerpo.AddForce(Vector3.up * 300f);
-            puedeSaltar = false;
+            if (estrategiaActual is BossPatron2)
+            {
+                if (colision.contacts.Length > 0)
+                {
+                    direccionActual = Vector3.Reflect(direccionActual, colision.contacts[0].normal);
+                }
+            }
+            else if (estrategiaActual is BossPatron4)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -110,5 +112,20 @@ public class Boss : MonoBehaviour
     public Vector3 ObtenerDireccion()
     {
         return direccionActual;
+    }
+
+    public void Disparar()
+    {
+        if (objetivo != null && proyectil != null && puntoDisparo != null)
+        {
+            if (Time.time >= tiempoDisparo + intervaloDisparo)
+            {
+                Vector3 direccion = (objetivo.position - puntoDisparo.position).normalized;
+                Quaternion rotacion = Quaternion.LookRotation(direccion);
+                GameObject bala = Instantiate(proyectil, puntoDisparo.position, rotacion);
+                bala.GetComponent<Rigidbody>().linearVelocity = direccion * 15f;
+                tiempoDisparo = Time.time;
+            }
+        }
     }
 }

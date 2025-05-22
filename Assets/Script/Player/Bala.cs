@@ -3,16 +3,19 @@ using System;
 
 public class Bala : MonoBehaviour
 {
-    public float velocidad;
-    public float tiempoDestruccion;
-
+    public float velocidad = 20f;
+    public float tiempoDestruccion = 5f;
     public static Action<GameObject> OnImpacto;
 
     void Start()
     {
         Destroy(gameObject, tiempoDestruccion);
-        Physics.IgnoreCollision(GetComponent<Collider>(),
-        GameObject.FindWithTag("Player").GetComponent<Collider>());
+
+        GameObject jugador = GameObject.FindWithTag("Player");
+        if (jugador != null)
+        {
+            Physics.IgnoreCollision(GetComponent<Collider>(), jugador.GetComponent<Collider>());
+        }
     }
 
     void Update()
@@ -22,19 +25,31 @@ public class Bala : MonoBehaviour
 
     void OnTriggerEnter(Collider otro)
     {
-        if (otro.CompareTag("Enemigo"))
+        if (otro.CompareTag("Enemigo") || otro.CompareTag("Boss"))
         {
             OnImpacto?.Invoke(otro.gameObject);
 
-            EnemigoEscudero enemigo = otro.GetComponent<EnemigoEscudero>();
-            if (enemigo != null)
+            if (otro.CompareTag("Boss"))
             {
-                enemigo.RecibirDaño();
+                Boss boss = otro.GetComponent<Boss>();
+                if (boss != null)
+                {
+                    boss.RecibirDanio(1f);
+                }
             }
             else
             {
-                Destroy(otro.gameObject);
+                EnemigoEscudero enemigo = otro.GetComponent<EnemigoEscudero>();
+                if (enemigo != null)
+                {
+                    enemigo.RecibirDaño();
+                }
+                else
+                {
+                    Destroy(otro.gameObject);
+                }
             }
+
             Destroy(gameObject);
         }
     }

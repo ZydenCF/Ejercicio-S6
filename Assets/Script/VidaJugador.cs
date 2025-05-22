@@ -33,10 +33,4 @@ public class VidaJugador : MonoBehaviour
         }
     }
 
-    public void RecuperarVida(int cantidad)
-    {
-        vida = Mathf.Min(vida + cantidad, vidaMaxima);
-        
-        OnVidaCambiada?.Invoke(vida, vidaMaxima);
-    }
 }

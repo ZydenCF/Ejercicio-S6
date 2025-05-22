@@ -2,14 +2,18 @@ using UnityEngine;
 
 public class BossPatron4 : IBossStrategy
 {
+    private bool inicializado;
+
     public void Ejecutar(Boss boss)
     {
-        if (boss.objetivo != null)
+        if (!inicializado)
         {
-            Vector3 direccion = (boss.objetivo.position - boss.transform.position).normalized;
-            boss.transform.position += direccion * boss.velocidad * Time.deltaTime;
-            boss.Saltar();
+            Vector3 direccionInicial = (boss.objetivo.position - boss.transform.position).normalized;
+            boss.EstablecerDireccion(direccionInicial);
+            inicializado = true;
         }
+
+        boss.transform.position += boss.ObtenerDireccion() * 20f * Time.deltaTime;
     }
 }
 
