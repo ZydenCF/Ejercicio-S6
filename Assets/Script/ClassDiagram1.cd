@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Bala">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAACAAAAAABAAAQAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Player\Bala.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BalaBoss">
+    <Position X="17.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAABAAAQAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Boss\BalaBoss.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Boss">
+    <Position X="15.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>BAQQAACIKCAAIAAABAAAGIoAAAAQACAIAAAAAAEAAMA=</HashCode>
+      <FileName>Assets\Script\Boss\Boss.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BossPatron1" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Boss\BossPatron1.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BossPatron4" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Boss\BossPatron4.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BossPatron3" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Boss\BossPatron3.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BossPatron2" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Boss\BossPatron2.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ControladorUI">
+    <Position X="17.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwBAABAACAAAAIAAAAAAAAAAEAAAIAAAAAAIAAAACA=</HashCode>
+      <FileName>Assets\Script\ControladorUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemigoBase" Collapsed="true">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQwBAAAAACAAAAACBQBAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Enemy\EnemigoBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EnemigoEscudero" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQIAACAQAQAAAAAAAAAAAIQAAAAAAAQEA=</HashCode>
+      <FileName>Assets\Script\Enemy\EnemigoEscudero.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemigoLento" Collapsed="true">
+    <Position X="12.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAQAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Enemy\EnemigoLento.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemigoRapido" Collapsed="true">
+    <Position X="10.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAQAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Enemy\EnemigoRapido.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemigoZigZag" Collapsed="true">
+    <Position X="9" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAQAAAAAAAAAAAAAJAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Enemy\EnemigoZigZag.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAAACgAEAAAAAAAAAAQAAAEAAABAwAgIBEEAEA=</HashCode>
+      <FileName>Assets\Script\GameManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Jugador" Collapsed="true">
+    <Position X="3" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBCAAAACAAAAJEFAAAAAAAABgAAAAAAAAgAAAAAIA=</HashCode>
+      <FileName>Assets\Script\Player\Jugador.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuPrincipal" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\MenuPrincipal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PantallaDerrota">
+    <Position X="3" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAACAAAAAAAAAAAAAAAQAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\PantallaDerrota.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spawner">
+    <Position X="0.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQBAEAAACAAFACAAABAAAEIAIAAAAAABCIAAAQAAAA=</HashCode>
+      <FileName>Assets\Script\Spawner.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VidaJugador">
+    <Position X="0.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAIAAAAAAAAAAAAAAQAAAAAEAAAAAAQAA=</HashCode>
+      <FileName>Assets\Script\VidaJugador.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="IObserver" Collapsed="true">
+    <Position X="4.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\IObserver.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IBossStrategy">
+    <Position X="20.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Boss\IBossStrategy.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ISubject" Collapsed="true">
+    <Position X="4.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAgAgAAAAAAA=</HashCode>
+      <FileName>Assets\Script\ISubject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
