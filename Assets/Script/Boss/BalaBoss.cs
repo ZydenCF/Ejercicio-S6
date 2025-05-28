@@ -21,6 +21,7 @@ public class BalaBoss : MonoBehaviour
         transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
     }
 
+
     void OnTriggerEnter(Collider otro)
     {
         if (otro.CompareTag("Player"))
