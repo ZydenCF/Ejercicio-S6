@@ -14,10 +14,10 @@ public class PantallaDerrota : MonoBehaviour
     {
         if (GameManager.instancia != null)
         {
-            Action<GameManager> actualizarTextos = (gm) => {
-                textoTiempoFinal.text = "Tiempo sobrevivido: " + (int)gm.tiempo + " segundos";
-                textoEnemigosEliminados.text = "Enemigos eliminados: " + gm.enemigosEliminados;
-                textoNivelAlcanzado.text = "Nivel alcanzado: " + gm.nivel;
+            Action<GameManager> actualizarTextos = (juego) => {
+                textoTiempoFinal.text = "Tiempo sobrevivido: " + (int)juego.tiempo + " segundos";
+                textoEnemigosEliminados.text = "Enemigos eliminados: " + juego.enemigosEliminados;
+                textoNivelAlcanzado.text = "Nivel alcanzado: " + juego.nivel;
             };
 
             actualizarTextos(GameManager.instancia);
