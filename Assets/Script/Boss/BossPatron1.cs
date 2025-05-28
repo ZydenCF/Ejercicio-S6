@@ -10,4 +10,5 @@ public class BossPatron1 : IBossStrategy
             boss.transform.position += direccion * boss.velocidad * Time.deltaTime;
         }
     }
+
 }
