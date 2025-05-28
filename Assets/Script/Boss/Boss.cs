@@ -5,6 +5,7 @@ using System;
 
 public class Boss : MonoBehaviour
 {
+
     public float vidaMaxima = 3f;
     private float vidaActual;
     private IBossStrategy estrategiaActual;
