@@ -5,5 +5,6 @@ using System;
 
 public interface IBossStrategy
 {
+
     void Ejecutar(Boss boss);
 }
