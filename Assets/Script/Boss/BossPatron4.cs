@@ -13,6 +13,7 @@ public class BossPatron4 : IBossStrategy
             inicializado = true;
         }
 
+
         boss.transform.position += boss.ObtenerDireccion() * 20f * Time.deltaTime;
     }
 }
